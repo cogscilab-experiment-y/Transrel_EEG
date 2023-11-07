@@ -25,3 +25,9 @@ Reaguje się klawiszami numerycznymi 1, 2, 3, enter (czterema palcami jednej rę
    1         2          3       enter
 ```
 Losowo sekwencja 25 warunków łatwych, 25 trudnych i 25 kontrolnych. Czas prezentacji trzeba będzie dobrać, żeby zadanie dawało odpowiednią trudność w warunku trudnym (~50%), ale na początek można dać 10 s.
+
+
+## TODO:
+* EEG
+* Graphic
+* Tests
