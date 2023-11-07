@@ -31,3 +31,4 @@ Losowo sekwencja 25 warunków łatwych, 25 trudnych i 25 kontrolnych. Czas preze
 * EEG
 * Graphic
 * Tests
+* Polskie znaki
