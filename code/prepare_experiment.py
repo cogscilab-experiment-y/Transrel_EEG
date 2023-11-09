@@ -7,13 +7,13 @@ from psychopy import visual
 def prepare_pair_to_draw(win, pair, size, sep_size, color, dist, pos, stimulus_type):
     ready_to_draw = []
     if stimulus_type == "image":
-        ready_to_draw.append(visual.ImageStim(win, image=pair[0], size=size,     pos=(pos[0] + dist[0], pos[1])))
-        ready_to_draw.append(visual.TextBox2(win,  text=pair[1],  size=sep_size, pos=(pos[0] + dist[1], pos[1]), color=color))
-        ready_to_draw.append(visual.ImageStim(win, image=pair[2], size=size,     pos=(pos[0] + dist[2], pos[1])))
+        ready_to_draw.append(visual.ImageStim(win, image=pair[0], size=size,     	    pos=(pos[0] + dist[0], pos[1])))
+        ready_to_draw.append(visual.TextBox2(win,  text=pair[1],  letterHeight=sep_size, pos=(pos[0] + dist[1], pos[1]), color=color, alignment="centre"))
+        ready_to_draw.append(visual.ImageStim(win, image=pair[2], size=size,             pos=(pos[0] + dist[2], pos[1])))
     elif stimulus_type == "text":
-        ready_to_draw.append(visual.TextBox2(win, text=pair[0], size=size,     pos=(pos[0] + dist[0], pos[1]), color=color))
-        ready_to_draw.append(visual.TextBox2(win, text=pair[1], size=sep_size, pos=(pos[0] + dist[1], pos[1]), color=color))
-        ready_to_draw.append(visual.TextBox2(win, text=pair[2], size=size,     pos=(pos[0] + dist[2], pos[1]), color=color))
+        ready_to_draw.append(visual.TextBox2(win, text=pair[0], letterHeight=size,     pos=(pos[0] + dist[0], pos[1]), color=color))
+        ready_to_draw.append(visual.TextBox2(win, text=pair[1], letterHeight=sep_size, pos=(pos[0] + dist[1], pos[1]), color=color))
+        ready_to_draw.append(visual.TextBox2(win, text=pair[2], letterHeight=size,     pos=(pos[0] + dist[2], pos[1]), color=color))
     return ready_to_draw
 
 
@@ -36,6 +36,7 @@ def prepare_trial(win, stimulus_list, separators, trial_type, config):
                                     {"elements": [elements[1], separators["higher"], elements[0]], "type": "incorrect"},
                                     {"elements": [elements[0], separators["lower"],  elements[1]], "type": "incorrect"},
                                     {"elements": [elements[1], separators["lower"],  elements[0]], "type": "incorrect"}], 3, replace=False)
+        answers = list(answers)
         answers.append({"elements": [elements[0], separators["equal"], elements[1]], "type": "correct"})
     else:
         separator = [separators["higher"], separators["lower"]]
@@ -47,13 +48,13 @@ def prepare_trial(win, stimulus_list, separators, trial_type, config):
         if trial_type == "easy":
             answers.append({"elements": [elements[0], separator[0], elements[1]], "type": "correct"})
         else:
-            answers += {"elements": [elements[1], separators[1], elements[0]], "type": "correct"}
+            answers.append({"elements": [elements[1], separator[1], elements[0]], "type": "correct"})
 
     np.random.shuffle(answers)
     stimulus["draw"] = prepare_to_draw(win, stimulus["elements"], "stimulus", config)
     for n, answer in enumerate(answers):
         answer["draw"] = prepare_to_draw(win, answer["elements"], n, config)
-    return {"trial_tye": trial_type, "elements": elements, "stimulus": stimulus, "answers": answers}
+    return {"trial_type": trial_type, "elements": elements, "stimulus": stimulus, "answers": answers}
 
 
 def prepare_block(win, trials, config):

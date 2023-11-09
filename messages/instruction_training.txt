@@ -1,1 +1,28 @@
-training
+W tym zadaniu będzie prezentowana para figur geometrycznych reprezentujących pewne obiekty, przedzielone znakiem / albo \ albo |.
+
+Znak / oznacza, że obiekt po lewej stronie znaku jest cięższy niż obiekt po jego prawej stronie (czyli prawy jest lżejszy).
+Znak \ oznacza, że obiekt po lewej stronie znaku jest lżejszy niż obiekt po jego prawej stronie (czyli prawy jest cięższy).
+Znak | oznacza, że oba obiekty ważą tyle samo.
+
+Poniżej prezentowane będą cztery pary obiektów przedzielonych znakami / \ oraz |. 
+Twoim zadaniem będzie wybrać tę parę, która poprawnie pokazuje, który obiekt jest cięższy (albo że oba ważą tyle samo).
+Odpowiedzi wybieraj klawiszami numerycznymi 1, 2, 3 i klawiszem enter, w kolejności odpowiadającej ich kolejności na ekranie.
+
+Oto przykład pary, w której pięciokąt jest cięższy od kwadratu.
+
+                     ⌂/□
+
+
+Poniżej mogą pojawić się następujące odpowiedzi
+
+
+⌂\□     □\⌂       ⌂|□     □/⌂
+
+  (1)       (2)         (3)     (enter)
+
+Należy wybrać odpowiedź nr 2 (zauważ, że obiekty zmieniły strony, znak / zmienił się na \, ale wciąż pięciokąt jest cięższy niż kwadrat.
+Czasem prawidłowa odpowiedź jest po prostu powtórzeniem pary z góry. Nie wybieraj odpowiedzi, w których relacja ciężkości obiektów jest błędna!
+                  
+Teraz nastąpi trening. Połóż cztery palce prawej ręki odpowiednio na klawiszach numerycznych 1, 2, 3 i enter.
+Jeżeli masz pytania dotyczące zadania to teraz je zadaj.
+Naciśnij spację, aby zacząć trening.

@@ -1,4 +1,5 @@
 procedure_test: False
+use_eeg: True
 
 # main visual parameters
 screen_color: grey
@@ -6,16 +7,16 @@ text_color: black
 text_size: 28
 
 stimulus_size: 50
-stimulus_separator_size: 53
+stimulus_separator_size: 30
 stimulus_color: black
-stimulus_dist: [-40, 0, 20]
-stimulus_pos: [0, 200]
+stimulus_dist: [-30, 0, 30]
+stimulus_pos: [0, 150]
 
 answers_size: 50
-answers_separator_size: 53
+answers_separator_size: 30
 answers_color: black
-answers_dist: [-40, 0, 20]
-answers_pos: [[-150, -50], [-50, -50], [50, -50], [150, -50]]
+answers_dist: [-30, 0, 30]
+answers_pos: [[-225, -50], [-75, -50], [75, -50], [225, -50]]
 
 
 # stimulus
@@ -24,7 +25,7 @@ stimulus_list: [1_8.png, 3_8.png, 7_8.png, 2_8.png]
 separators: {equal: "|", higher: /, lower: \}
 
 # reactions
-reaction_keys: ["1", "2", "3", return]
+reaction_keys: [num_1, num_2, num_3, num_enter]
 
 # time parameters
 answer_time: 10
@@ -32,12 +33,12 @@ answer_time: 10
 # training
 do_training: True
 fdbk_training: True
-training_trials: {easy: 2, hard: 0, control: 0}
+training_trials: {easy: 2, hard: 2, control: 2}
 
 
 # experiment
 fdbk_experiment: False
-experiment_trials: {easy: 0, hard: 0, control: 0}
+experiment_trials: {easy: 25, hard: 25, control: 25}
 
 
 # fixation point
@@ -62,8 +63,10 @@ wait_jitter: 1
 
 
 # show extra text during trial
-extra_text_to_show: [] # [{pos: [-270, -250], color: black, size: 40, text: "wprowadź odpowiedź:"},
-                       #  {pos: [450, -350], color: black, size: 30, text: "zatwierdź enter"}]
+extra_text_to_show: [{pos: [-225, -90], color: darkgrey, size: 20, text: "1"},
+                     {pos: [-75, -90], color: darkgrey, size: 20, text: "2"},
+                     {pos: [75, -90], color: darkgrey, size: 20, text: "3"},
+                     {pos: [225, -90], color: darkgrey, size: 20, text: "enter"}]
 
 # clock
 show_clock: false

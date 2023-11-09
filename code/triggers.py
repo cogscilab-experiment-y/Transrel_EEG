@@ -3,7 +3,7 @@ import time
 from datetime import datetime
 from typing import List, Dict
 
-import parallel
+# import parallel
 
 
 class bcolors:

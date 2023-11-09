@@ -28,6 +28,4 @@ Losowo sekwencja 25 warunków łatwych, 25 trudnych i 25 kontrolnych. Czas preze
 
 
 ## TODO:
-* EEG
-* Graphic
 * Tests

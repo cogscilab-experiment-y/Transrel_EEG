@@ -1,1 +1,13 @@
-experiment
+Możemy teraz rozpocząć właściwe badanie. Składa się ono z 75 ekranów z parą i czterema odpowiedziami.   
+
+Pamiętaj: 
+Znak / oznacza, że obiekt po lewej stronie znaku jest cięższy niż obiekt po jego prawej stronie (czyli prawy jest lżejszy).
+Znak \ oznacza, że obiekt po lewej stronie znaku jest lżejszy niż obiekt po jego prawej stronie (czyli prawy jest cięższy).
+Znak | oznacza, że oba obiekty ważą tyle samo. Dla / i \ wybieraj odpowiedź, w której ten sam obiekt jest cięższy i ten sam
+obiekt jest lżejszy co w parze u góry, pamiętając, że czasami obiekty zamieniają się stronami. Przy | ważą one tyle samo.
+
+Staraj się wybierać poprawne odpowiedzi, rejestrujemy Twoją poprawność. Masz 10 sekund na każdą odpowiedź.
+
+Połóż cztery palce prawej ręki odpowiednio na klawiszach numerycznych 1, 2, 3 i enter.
+
+Naciśnij spację, aby rozpocząć.

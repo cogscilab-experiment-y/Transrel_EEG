@@ -4,7 +4,7 @@ import random
 from os.path import join
 from psychopy import visual, core, event
 
-
+from code.triggers import TriggerHandler
 from code.load_data import load_config
 from code.screen_misc import get_screen_res
 from code.show_info import part_info, show_info, show_stim, show_clock, show_timer, draw_stim_list
@@ -15,6 +15,18 @@ RESULTS = []
 PART_ID = ""
 
 
+class TriggerTypes(object):
+    STIMULUS = 'stimulus'
+    ANSWER = 'answer'
+
+    @classmethod
+    def vals(cls):
+        return [value for name, value in vars(cls).items() if name.isupper()]
+
+
+TRIGGERS = TriggerHandler(TriggerTypes.vals(), trigger_params=['acc', 'stimulus'], trigger_time=0.003)
+
+
 @atexit.register
 def save_beh_results():
     num = random.randint(100, 999)
@@ -22,6 +34,7 @@ def save_beh_results():
         dict_writer = csv.DictWriter(beh_file, RESULTS[0].keys(), delimiter=';')
         dict_writer.writeheader()
         dict_writer.writerows(RESULTS)
+    TRIGGERS.save_to_file(join('results', '{}_triggermap_{}.csv'.format(PART_ID, num)))
 
 
 def run_block(win, config, trials, block_type, fixation, clock, extra_text, clock_image, timer, feedback):
@@ -29,22 +42,29 @@ def run_block(win, config, trials, block_type, fixation, clock, extra_text, cloc
         reaction_time = None
         key_pressed = ""
         acc = -1
-
+        
+        TRIGGERS.set_curr_trial_start()
+        
         # fixation
         show_stim(fixation, config["fixation_time"], clock, win)
-        print(trial)
+        
+        # stimulus
         draw_stim_list(trial["stimulus"]["draw"], True)
         for answer in trial["answers"]:
             draw_stim_list(answer["draw"], True)
         draw_stim_list(extra_text, True)
+        
+        win.callOnFlip(TRIGGERS.send_trigger, TriggerTypes.STIMULUS)
         win.callOnFlip(clock.reset)
         win.flip()
+        
         while clock.getTime() < config["answer_time"]:
             show_clock(clock_image, clock, config)
             show_timer(timer, clock, config)
             key_pressed = event.getKeys(keyList=config["reaction_keys"])
             if key_pressed:
                 reaction_time = clock.getTime()
+                TRIGGERS.send_trigger(TriggerTypes.ANSWER)
                 key_pressed = key_pressed[0]
                 break
             check_exit()
@@ -67,11 +87,12 @@ def run_block(win, config, trials, block_type, fixation, clock, extra_text, cloc
                          "block_type": block_type,
                          "rt": reaction_time,
                          "acc": acc,
-                         "trial_type": trial["trial_tye"],
+                         "trial_type": trial["trial_type"],
                          "key_pressed": key_pressed,
                          "correct_key": correct_key,
                          "all_info": trial}
         RESULTS.append(trial_results)
+        TRIGGERS.add_info_to_last_trigger(dict(acc=acc, stimulus=trial["trial_type"]), how_many=-1)
 
         if config[f"fdbk_{block_type}"]:
             show_stim(feedback[acc], config["fdbk_show_time"], clock, win)
@@ -84,6 +105,9 @@ def main():
     global PART_ID
     config = load_config()
     info, PART_ID = part_info(test=config["procedure_test"])
+    
+    if config['use_eeg']:
+        TRIGGERS.connect_to_eeg()
 
     screen_res = dict(get_screen_res())
     win = visual.Window(list(screen_res.values()), fullscr=True, units='pix', screen=0, color=config["screen_color"])
